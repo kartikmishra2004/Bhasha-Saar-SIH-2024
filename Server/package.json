@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "An accessible mobile app for real-time voice-to-text and text-to-voice translation in Indian languages, designed to empower individuals with hearing and speech impairments.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "nodemon src/index.js"
   },
