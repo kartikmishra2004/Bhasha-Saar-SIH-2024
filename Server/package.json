@@ -4,7 +4,7 @@
   "description": "An accessible mobile app for real-time voice-to-text and text-to-voice translation in Indian languages, designed to empower individuals with hearing and speech impairments.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon src/index.js"
   },
   "keywords": [
     "bhasha-saar",
@@ -12,5 +12,18 @@
     "MERN-Stack"
   ],
   "author": "Kartik Mishra",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cloudinary": "^2.5.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.8.1",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^3.1.7",
+    "uuid": "^11.0.3",
+    "zod": "^3.23.8"
+  }
 }
