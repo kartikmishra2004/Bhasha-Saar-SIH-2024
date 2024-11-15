@@ -3,7 +3,8 @@ import cors from 'cors';
 import 'dotenv/config';
 import connectDB from './database/dbconnecion.js';
 import authRoute from './routes/auth.route.js';
-// import errorMiddleware from './middlewares/error.middleware.js';
+import errorMiddleware from './middlewares/error.middleware.js';
+import profileRoute from "./routes/profile.route.js";
 
 const app = express();
 
@@ -21,7 +22,10 @@ app.use(express.json());
 // API for Authentication
 app.use("/api/v1/auth", authRoute);
 
-// app.use(errorMiddleware);
+// API for Profile upload
+app.use("/api/v1/profile", profileRoute);
+
+app.use(errorMiddleware);
 
 const PORT = process.env.PORT || 5000;
 connectDB()

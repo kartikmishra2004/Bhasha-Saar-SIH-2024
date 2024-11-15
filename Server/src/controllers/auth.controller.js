@@ -84,31 +84,6 @@ export const profileUpload = async (req, res) => {
     }
 }
 
-// User update logic
-export const updateUser = async (req, res) => {
-    try {
-        const { fullName, aboutme } = req.body
-        // Create new user object
-        const newUser = {};
-        if (fullName) { newUser.fullName = fullName }
-        if (aboutme) { newUser.aboutme = aboutme }
-
-        // Find the user to be updated and update it
-        let user = await User.findById(req.params.id);
-        if (!user) {
-            res.status(404).json({ message: "Failed to find user!!" });
-        }
-        if (user._id.toString() != req.user._id) {
-            res.status(401).json({ message: "Unauthorized!!" });
-        } else {
-            user = await User.findByIdAndUpdate(req.params.id, { $set: newUser }, { new: true });
-            res.status(200).json({ message: "Profile updated successfully!!", user });
-        }
-    } catch (error) {
-        next(error)
-    }
-}
-
 // User delete logic 
 export const deleteUser = async (req, res) => {
     try {
