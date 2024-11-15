@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import 'dotenv/config';
 import connectDB from './database/dbconnecion.js';
-// import authRoute from './routes/auth.route.js';
+import authRoute from './routes/auth.route.js';
 // import errorMiddleware from './middlewares/error.middleware.js';
 
 const app = express();
@@ -19,7 +19,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // API for Authentication
-// app.use("/api/v1/auth", authRoute);
+app.use("/api/v1/auth", authRoute);
 
 // app.use(errorMiddleware);
 
