@@ -1,0 +1,28 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "jsx": "react-native", // Enables JSX support specifically for React Native
+    "target": "esnext", // Ensures modern ES features are used
+    "moduleResolution": "node", // Resolves Node modules
+    "allowSyntheticDefaultImports": true, // Allows default imports for modules
+    "baseUrl": ".", // Enables absolute imports
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts"
+, "app/_layout.jsx"  ],
+  "exclude": [
+    "node_modules", // Excludes unnecessary directories
+    "babel.config.js", // Excludes Babel configuration file if present
+    "metro.config.js", // Excludes Metro bundler configuration file if present
+    "jest.config.js" // Excludes Jest configuration file if present
+  ]
+}
