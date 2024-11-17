@@ -7,6 +7,7 @@ import FormField from '../../components/formField'
 import { router, redirect } from 'expo-router'
 
 const SignUp = () => {
+
   const [form, setForm] = useState({
     fullName: '',
     username: '',
@@ -15,6 +16,22 @@ const SignUp = () => {
     isDeaf: '',
     langPref: '',
   });
+
+  const submitData = async () => {
+    try {
+      const data = await fetch('https://bhashasaar-sih-2024.vercel.app/api/v1/auth/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(form)
+      });
+      const res_data = await data.json();
+      console.log(res_data)
+    } catch (error) {
+      console.log("Error Posting Data!!");
+    }
+  }
 
   return (
     <SafeAreaView>
@@ -99,7 +116,7 @@ const SignUp = () => {
               handleChangeText={(value) => setForm({ ...form, langPref: value })}
             />
           </View>
-          <CustomButton isDisabled={!form.fullName || !form.username || !form.email || !form.password ? true : false} title='Sign Up' handlePress={() => { console.log(form) }} />
+          <CustomButton isDisabled={!form.fullName || !form.username || !form.email || !form.password ? true : false} title='Sign Up' handlePress={() => submitData()} />
         </View>
       </ScrollView>
       <StatusBar backgroundColor='#161622' barStyle="light-content" />

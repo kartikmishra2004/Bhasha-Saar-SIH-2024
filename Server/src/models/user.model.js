@@ -23,11 +23,9 @@ const userSchema = new mongoose.Schema({
     },
     isDeaf: {
         type: String,
-        default: "No"
     },
     langPref: {
         type: String,
-        default: "Hindi",
     },
 
 },
