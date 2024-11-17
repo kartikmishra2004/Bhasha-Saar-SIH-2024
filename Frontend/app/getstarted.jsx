@@ -4,10 +4,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import CustomButton from "../components/customButton";
 import { Redirect, router } from "expo-router";
 
-export default function Index() {
+export default function GetStarted() {
   return (
-    <SafeAreaView style={{borderStartColor: '#161622'}}>
-      <ScrollView style={{borderStartColor: '#161622'}} contentContainerStyle={{ height: '100%' }}>
+    <SafeAreaView>
+      <ScrollView contentContainerStyle={{ height: '100%' }}>
         <View
           style={{
             flex: 1,
@@ -40,7 +40,7 @@ export default function Index() {
                 color: 'white',
                 fontWeight: '900'
               }}
-            >Welcome to <Text style={{ color: '#ffa001' }}>Ashakt bhashini</Text>
+            >Continue to <Text style={{ color: '#ffa001' }}>Ashakt bhashini</Text>
             </Text>
             <Text style={{
               fontSize: 16,
@@ -48,9 +48,9 @@ export default function Index() {
               fontWeight: '100',
               color: 'white',
               marginTop: 10
-            }}>Breaking Barriers, Bridging Voices.</Text>
+            }}>Empower Communication, One Tap Away.</Text>
           </View>
-          <CustomButton title='Next' handlePress={() => { router.push('/getstarted') }} />
+          <CustomButton title='Get started' handlePress={() => { router.push('/home') }} />
         </View>
       </ScrollView>
       <StatusBar backgroundColor='#161622' barStyle="light-content"/>

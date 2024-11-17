@@ -4,7 +4,7 @@ import React from 'react'
 const Settings = () => {
     return (
         <View style={styles.container}>
-            <Text style={{fontSize: 30}}>Settings</Text>
+            <Text style={{fontSize: 30, color: 'white'}}>Settings</Text>
         </View>
     )
 }
@@ -16,5 +16,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
+        backgroundColor: '#232533'
     }
 })

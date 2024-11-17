@@ -1,6 +1,25 @@
-import { Stack } from "expo-router";
+import { SplashScreen, Stack } from "expo-router";
 import "../global.css";
+import { useFonts } from "expo-font";
+import AppLoading from 'expo-app-loading'
+import { useEffect } from "react";
+
+SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  return <Stack screenOptions={{headerShown: false}}/>;
+  const [fontsLoaded] = useFonts({
+    'Inder': require('../assets/fonts/Inder Regular.ttf')
+  });
+
+  useEffect(()=> {
+    if(fontsLoaded) SplashScreen.hideAsync();
+  }, [fontsLoaded])
+
+  if(!fontsLoaded){
+    return <AppLoading />
+  }
+  return <Stack screenOptions={{animation: 'ios_from_right', headerShown: false, navigationBarColor: '#161622', contentStyle: {backgroundColor: '#161622'}}}>
+    <Stack.Screen name="index"/>
+  </Stack>;
+
 }
