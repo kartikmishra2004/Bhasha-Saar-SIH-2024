@@ -22,7 +22,8 @@ const userSchema = new mongoose.Schema({
         default: "https://res.cloudinary.com/dlwudcsu1/image/upload/v1723743051/Picsart_24-08-15_23-00-10-662_bix7iy.png",
     },
     isDeaf: {
-        type: Boolean,
+        type: String,
+        default: "No"
     },
     langPref: {
         type: String,
