@@ -7,7 +7,7 @@ import { Redirect, router } from "expo-router";
 export default function Index() {
   return (
     <SafeAreaView style={{borderStartColor: '#161622'}}>
-      <ScrollView style={{borderStartColor: '#161622'}} contentContainerStyle={{ height: '100%' }}>
+      <ScrollView style={{borderStartColor: '#161622'}} contentContainerStyle={{ height: '100%', backgroundColor: '#161622' }}>
         <View
           style={{
             flex: 1,

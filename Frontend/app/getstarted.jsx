@@ -7,7 +7,7 @@ import { Redirect, router } from "expo-router";
 export default function GetStarted() {
   return (
     <SafeAreaView>
-      <ScrollView contentContainerStyle={{ height: '100%' }}>
+      <ScrollView contentContainerStyle={{ height: '100%', backgroundColor: '#161622' }}>
         <View
           style={{
             flex: 1,
@@ -50,7 +50,7 @@ export default function GetStarted() {
               marginTop: 10
             }}>Empower Communication, One Tap Away.</Text>
           </View>
-          <CustomButton title='Get started' handlePress={() => { router.push('/home') }} />
+          <CustomButton title='Get started' handlePress={() => { router.push('/signup') }} />
         </View>
       </ScrollView>
       <StatusBar backgroundColor='#161622' barStyle="light-content"/>
