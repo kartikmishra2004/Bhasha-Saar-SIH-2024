@@ -62,44 +62,44 @@ const SignUp = () => {
             }}>Join Us and Redefine Connection.</Text>
           </View>
           <View>
-            <FormField 
-              fieldType='text' 
-              title='Full Name' 
-              value={form.fullName} 
-              handleChangeText={(value) => setForm({ ...form, fullName: value })} 
+            <FormField
+              fieldType='text'
+              title='Full Name'
+              value={form.fullName}
+              handleChangeText={(value) => setForm({ ...form, fullName: value })}
             />
-            <FormField 
-              fieldType='text' 
-              title='Username' 
-              value={form.username} 
-              handleChangeText={(value) => setForm({ ...form, username: value })} 
+            <FormField
+              fieldType='text'
+              title='Username'
+              value={form.username}
+              handleChangeText={(value) => setForm({ ...form, username: value })}
             />
-            <FormField 
-              fieldType='text' 
-              title='Email' 
-              value={form.email} 
-              handleChangeText={(value) => setForm({ ...form, email: value })} 
+            <FormField
+              fieldType='text'
+              title='Email'
+              value={form.email}
+              handleChangeText={(value) => setForm({ ...form, email: value })}
             />
-            <FormField 
-              fieldType='text' 
-              title='Password' 
-              value={form.password} 
-              handleChangeText={(value) => setForm({ ...form, password: value })} 
+            <FormField
+              fieldType='text'
+              title='Password'
+              value={form.password}
+              handleChangeText={(value) => setForm({ ...form, password: value })}
             />
-            <FormField 
-              fieldType='deaf' 
-              title='Are you deaf?' 
-              value={form.isDeaf} 
-              handleChangeText={(value) => setForm({ ...form, isDeaf: value })} 
+            <FormField
+              fieldType='deaf'
+              title='Are you deaf?'
+              value={form.isDeaf}
+              handleChangeText={(value) => setForm({ ...form, isDeaf: value })}
             />
-            <FormField 
-              fieldType='langpref' 
-              title='Language Preference' 
-              value={form.langPref} 
-              handleChangeText={(value) => setForm({ ...form, langPref: value })} 
+            <FormField
+              fieldType='langpref'
+              title='Language Preference'
+              value={form.langPref}
+              handleChangeText={(value) => setForm({ ...form, langPref: value })}
             />
           </View>
-          <CustomButton title='Sign Up' handlePress={() => { console.log(form) }} />
+          <CustomButton isDisabled={!form.fullName || !form.username || !form.email || !form.password ? true : false} title='Sign Up' handlePress={() => { console.log(form) }} />
         </View>
       </ScrollView>
       <StatusBar backgroundColor='#161622' barStyle="light-content" />

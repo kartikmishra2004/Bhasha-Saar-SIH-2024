@@ -4,12 +4,14 @@ import { Picker } from "@react-native-picker/picker"
 
 const FormField = ({ title, fieldType, handleChangeText, value }) => {
   const [isFocused, setIsFocused] = useState(false);
+  const [isPassword, setIsPassword] = useState(false);
 
   if (fieldType === 'text') {
     return (
       <View style={styles.container}>
         <Text style={styles.label}>{title}</Text>
         <TextInput
+          secureTextEntry={title === 'Password' ? true : isPassword}
           value={value}
           onChangeText={handleChangeText}
           style={[

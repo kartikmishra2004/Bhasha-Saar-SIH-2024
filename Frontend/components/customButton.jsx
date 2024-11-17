@@ -1,14 +1,15 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 
-const CustomButton = ({ title, handlePress }) => {
+const CustomButton = ({ title, handlePress, isDisabled }) => {
     return (
         <TouchableOpacity
-        onPress={handlePress}
+            disabled={isDisabled}
+            onPress={handlePress}
             style={{
                 justifyContent: "center",
                 alignItems: "center",
-                backgroundColor: "#ffa001",
+                backgroundColor: `${!isDisabled ? '#ffa001' : '#232533'}`,
                 borderRadius: 30,
                 width: 320,
                 height: 55,
