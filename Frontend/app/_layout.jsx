@@ -18,8 +18,8 @@ export default function RootLayout() {
   if(!fontsLoaded){
     return <AppLoading />
   }
-  return <Stack screenOptions={{animation: 'ios_from_right', headerShown: false, navigationBarColor: '#161622', contentStyle: {backgroundColor: '#161622'}}}>
-    <Stack.Screen name="index"/>
+  return <Stack screenOptions={{animation: 'none', headerShown: false, navigationBarColor: '#161622', contentStyle: {backgroundColor: '#161622'}}}>
+    <Stack.Screen name="index" options={{animation: 'none'}}/>
   </Stack>;
 
 }

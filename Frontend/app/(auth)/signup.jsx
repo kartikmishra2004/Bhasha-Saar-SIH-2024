@@ -1,10 +1,11 @@
-import { Image, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native'
-import React, { useState } from 'react'
+import { Alert, Image, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import logo from '../../assets/images/img.png'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import CustomButton from '../../components/customButton'
 import FormField from '../../components/formField'
-import { router, redirect } from 'expo-router'
+import { router, redirect, Link, Redirect } from 'expo-router'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const SignUp = () => {
 
@@ -13,9 +14,20 @@ const SignUp = () => {
     username: '',
     email: '',
     password: '',
-    isDeaf: '',
-    langPref: '',
+    isDeaf: 'No',
+    langPref: 'Hindi',
   });
+
+  const [isLogin, setIsLogin] = useState('')
+
+  const getLogin = async () => {
+    const token = await AsyncStorage.getItem('token');
+    setIsLogin(token);
+  }
+
+  useEffect(() => {
+    getLogin();
+  }, [])
 
   const submitData = async () => {
     try {
@@ -27,101 +39,128 @@ const SignUp = () => {
         body: JSON.stringify(form)
       });
       const res_data = await data.json();
-      console.log(res_data)
+      await AsyncStorage.setItem('token', res_data.token);
+      router.push('/signin');
+      if (!data.ok) {
+        Alert.alert("Invalid details!!", res_data.extraDetails ? res_data.extraDetails : res_data.message);
+      } else {
+        setForm({
+          fullName: '',
+          username: '',
+          email: '',
+          password: '',
+          isDeaf: 'No',
+          langPref: 'Hindi',
+        })
+        Alert.alert("Success!!", res_data.message);
+      }
     } catch (error) {
-      console.log("Error Posting Data!!");
+      console.log("Failed to signup!!");
     }
   }
 
-  return (
-    <SafeAreaView>
-      <ScrollView contentContainerStyle={{ height: '100vh', paddingVertical: 50, backgroundColor: '#161622' }}>
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "#161622",
-            gap: 60
-          }}
-        >
+  if (isLogin) {
+    return <Redirect href={'/home'} />;
+  } else {
+    return (
+      <SafeAreaView>
+        <ScrollView contentContainerStyle={{ height: '100vh', paddingVertical: 50, backgroundColor: '#161622' }}>
           <View
             style={{
+              flex: 1,
               justifyContent: "center",
               alignItems: "center",
+              backgroundColor: "#161622",
+              gap: 60
             }}
           >
-            <Image
+            <View
               style={{
-                width: 100,
-                height: 100,
-                marginBottom: 20,
+                justifyContent: "center",
+                alignItems: "center",
               }}
-              source={logo}
-            />
-            <Text
-              style={{
-                textAlign: "center",
-                width: 300,
-                fontSize: 30,
-                fontFamily: 'Inder',
+            >
+              <Image
+                style={{
+                  width: 100,
+                  height: 100,
+                  marginBottom: 20,
+                }}
+                source={logo}
+              />
+              <Text
+                style={{
+                  textAlign: "center",
+                  width: 300,
+                  fontSize: 30,
+                  fontFamily: 'Inder',
+                  color: 'white',
+                  fontWeight: '900'
+                }}
+              >Sign Up to <Text style={{ color: '#ffa001' }}>Ashakt bhashini</Text>
+              </Text>
+              <Text style={{
+                fontSize: 16,
+                letterSpacing: 1,
+                fontWeight: '100',
                 color: 'white',
-                fontWeight: '900'
-              }}
-            >Sign Up to <Text style={{ color: '#ffa001' }}>Ashakt bhashini</Text>
-            </Text>
-            <Text style={{
+                marginTop: 10
+              }}>Join Us and Redefine Connection.</Text>
+            </View>
+            <View>
+              <FormField
+                fieldType='text'
+                title='Full Name'
+                value={form.fullName}
+                handleChangeText={(value) => setForm({ ...form, fullName: value })}
+              />
+              <FormField
+                fieldType='text'
+                title='Username'
+                value={form.username}
+                handleChangeText={(value) => setForm({ ...form, username: value })}
+              />
+              <FormField
+                fieldType='text'
+                title='Email'
+                value={form.email}
+                handleChangeText={(value) => setForm({ ...form, email: value })}
+              />
+              <FormField
+                fieldType='text'
+                title='Password'
+                value={form.password}
+                handleChangeText={(value) => setForm({ ...form, password: value })}
+              />
+              <FormField
+                fieldType='deaf'
+                title='Are you deaf?'
+                value={form.isDeaf}
+                handleChangeText={(value) => setForm({ ...form, isDeaf: value })}
+              />
+              <FormField
+                fieldType='langpref'
+                title='Language Preference'
+                value={form.langPref}
+                handleChangeText={(value) => setForm({ ...form, langPref: value })}
+              />
+            </View>
+            <CustomButton isDisabled={!form.fullName || !form.username || !form.email || !form.password ? true : false} title='Sign Up' handlePress={() => submitData()} />
+            <Link href={'/signin'} style={{
               fontSize: 16,
               letterSpacing: 1,
               fontWeight: '100',
               color: 'white',
               marginTop: 10
-            }}>Join Us and Redefine Connection.</Text>
+            }}>
+              Already have an account?
+            </Link>
           </View>
-          <View>
-            <FormField
-              fieldType='text'
-              title='Full Name'
-              value={form.fullName}
-              handleChangeText={(value) => setForm({ ...form, fullName: value })}
-            />
-            <FormField
-              fieldType='text'
-              title='Username'
-              value={form.username}
-              handleChangeText={(value) => setForm({ ...form, username: value })}
-            />
-            <FormField
-              fieldType='text'
-              title='Email'
-              value={form.email}
-              handleChangeText={(value) => setForm({ ...form, email: value })}
-            />
-            <FormField
-              fieldType='text'
-              title='Password'
-              value={form.password}
-              handleChangeText={(value) => setForm({ ...form, password: value })}
-            />
-            <FormField
-              fieldType='deaf'
-              title='Are you deaf?'
-              value={form.isDeaf}
-              handleChangeText={(value) => setForm({ ...form, isDeaf: value })}
-            />
-            <FormField
-              fieldType='langpref'
-              title='Language Preference'
-              value={form.langPref}
-              handleChangeText={(value) => setForm({ ...form, langPref: value })}
-            />
-          </View>
-          <CustomButton isDisabled={!form.fullName || !form.username || !form.email || !form.password ? true : false} title='Sign Up' handlePress={() => submitData()} />
-        </View>
-      </ScrollView>
-      <StatusBar backgroundColor='#161622' barStyle="light-content" />
-    </SafeAreaView>
-  );
+        </ScrollView>
+        <StatusBar backgroundColor='#161622' barStyle="light-content" />
+      </SafeAreaView>
+    );
+  }
 };
 
 

@@ -1,12 +1,38 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import CustomButton from '../../components/customButton'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { Redirect, router } from 'expo-router'
 
 const Settings = () => {
-    return (
-        <View style={styles.container}>
-            <Text style={{fontSize: 30, color: 'white'}}>Settings</Text>
-        </View>
-    )
+
+    const [isLogin, setIsLogin] = useState('');
+
+    const Logout = async () => {
+        await AsyncStorage.removeItem('token');
+        setIsLogin('')
+    }
+
+    const getLogin = async () => {
+        const token = await AsyncStorage.getItem('token');
+        setIsLogin(token);
+      }
+
+    useEffect(() => {
+        getLogin();
+    }, [isLogin])
+
+    if (isLogin) {
+        return (
+            <View style={styles.container}>
+                <Text style={{ fontSize: 30, color: 'white' }}>
+                    <CustomButton title={'Logout'} handlePress={() => Logout()} />
+                </Text>
+            </View>
+        )
+    } else {
+        return <Redirect href={'/signin'} />
+    }
 }
 
 export default Settings

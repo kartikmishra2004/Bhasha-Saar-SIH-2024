@@ -40,6 +40,6 @@ export const signupSchema = z.object({
     langPref: z
         .string({ required_error: "Please fill all required fields!!" })
         .trim()
-        .min(2, { message: "Language must be at least 2 characters long!!" })
+        .min(2, { message: "Please select a language!!" })
         .max(30, { message: "Language cannot be more than 30 characters!!" }),
 });
