@@ -1,6 +1,7 @@
 import { Alert, Image, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import logo from '../../assets/images/img.png'
+import loading from '../../assets/images/loading.gif'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import CustomButton from '../../components/customButton'
 import FormField from '../../components/formField'
@@ -8,6 +9,8 @@ import { router, redirect, Link, Redirect } from 'expo-router'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const SignUp = () => {
+
+  const [isLoading, setisLoading] = useState(false);
 
   const [form, setForm] = useState({
     fullName: '',
@@ -30,6 +33,7 @@ const SignUp = () => {
   }, [])
 
   const submitData = async () => {
+    setisLoading(true);
     try {
       const data = await fetch('https://bhashasaar-sih-2024.vercel.app/api/v1/auth/signup', {
         method: 'POST',
@@ -43,6 +47,7 @@ const SignUp = () => {
       router.push('/signin');
       if (!data.ok) {
         Alert.alert("Invalid details!!", res_data.extraDetails ? res_data.extraDetails : res_data.message);
+        setisLoading(false);
       } else {
         setForm({
           fullName: '',
@@ -53,9 +58,11 @@ const SignUp = () => {
           langPref: 'Hindi',
         })
         Alert.alert("Success!!", res_data.message);
+        setisLoading(false);
       }
     } catch (error) {
       console.log("Failed to signup!!");
+      setisLoading(false);
     }
   }
 
@@ -145,7 +152,10 @@ const SignUp = () => {
                 handleChangeText={(value) => setForm({ ...form, langPref: value })}
               />
             </View>
-            <CustomButton isDisabled={!form.fullName || !form.username || !form.email || !form.password ? true : false} title='Sign Up' handlePress={() => submitData()} />
+            {isLoading ?
+              (<CustomButton isDisabled={true} title='Please wait...' handlePress={() => submitData()} />) :
+              (<CustomButton isDisabled={!form.fullName || !form.username || !form.email || !form.password ? true : false} title='Sign Up' handlePress={() => submitData()} />)}
+
             <Link href={'/signin'} style={{
               fontSize: 16,
               letterSpacing: 1,

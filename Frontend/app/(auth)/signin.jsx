@@ -8,6 +8,9 @@ import { router, Redirect, Link } from 'expo-router'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const Signin = () => {
+
+  const [isLoading, setisLoading] = useState(false);
+
   const [form, setForm] = useState({
     username: '',
     password: '',
@@ -25,6 +28,7 @@ const Signin = () => {
   }, [])
 
   const submitData = async () => {
+    setisLoading(true);
     try {
       const data = await fetch('https://bhashasaar-sih-2024.vercel.app/api/v1/auth/login', {
         method: 'POST',
@@ -38,15 +42,18 @@ const Signin = () => {
       router.push('/home');
       if (!data.ok) {
         Alert.alert("Invalid details!!", res_data.extraDetails ? res_data.extraDetails : res_data.message);
+        setisLoading(false);
       } else {
         setForm({
           username: '',
           password: '',
         })
         Alert.alert("Success!!", res_data.message);
+        setisLoading(false);
       }
     } catch (error) {
       console.log("Failed to login!!");
+      setisLoading(false);
     }
   }
 
@@ -112,7 +119,9 @@ const Signin = () => {
                 handleChangeText={(value) => setForm({ ...form, password: value })}
               />
             </View>
-            <CustomButton isDisabled={!form.username || !form.password ? true : false} title='Sign in' handlePress={() => submitData()} />
+            {isLoading ? (<CustomButton isDisabled={true} title='Please wait...' handlePress={() => submitData()} />) : (
+              <CustomButton isDisabled={!form.username || !form.password ? true : false} title='Sign in' handlePress={() => submitData()} />
+            )}
             <Link href={'/signup'} style={{
               fontSize: 16,
               letterSpacing: 1,
