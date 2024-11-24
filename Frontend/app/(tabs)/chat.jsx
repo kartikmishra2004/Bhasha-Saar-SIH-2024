@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StatusBar, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
 const Chat = () => {
     return (
         <View style={styles.container}>
             <Text style={{fontSize: 30, color: 'white'}}>Chat</Text>
+            <StatusBar backgroundColor='#ffa001' barStyle="light-content" />
         </View>
     )
 }

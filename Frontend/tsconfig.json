@@ -25,4 +25,4 @@
     "metro.config.js", // Excludes Metro bundler configuration file if present
     "jest.config.js" // Excludes Jest configuration file if present
   ]
-}
+} 

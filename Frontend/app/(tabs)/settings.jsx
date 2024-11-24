@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StatusBar, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import CustomButton from '../../components/customButton'
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -28,6 +28,7 @@ const Settings = () => {
                 <Text style={{ fontSize: 30, color: 'white' }}>
                     <CustomButton title={'Logout'} handlePress={() => Logout()} />
                 </Text>
+                <StatusBar backgroundColor='#ffa001' barStyle="light-content" />
             </View>
         )
     } else {
