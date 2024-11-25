@@ -1,7 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import { router, Stack } from 'expo-router'
-import AsyncStorage from '@react-native-async-storage/async-storage'
+import { StyleSheet } from 'react-native'
+import { Stack } from 'expo-router'
 
 const AuthLayout = () => {
 
