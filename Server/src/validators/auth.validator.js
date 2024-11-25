@@ -36,10 +36,10 @@ export const signupSchema = z.object({
         .min(5, { message: "Password must be atleast 5 character long!!" })
         .max(30, { message: "Password cannot be more than 30 characters!!" }),
     isDeaf: z
-        .boolean({ required_error: "Please fill all required fields!!" }),
+        .string({ required_error: "Please fill all required fields!!" }),
     langPref: z
         .string({ required_error: "Please fill all required fields!!" })
         .trim()
-        .min(2, { message: "Language must be at least 2 characters long!!" })
+        .min(2, { message: "Please select a language!!" })
         .max(30, { message: "Language cannot be more than 30 characters!!" }),
 });
