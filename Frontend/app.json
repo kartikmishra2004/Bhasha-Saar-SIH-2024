@@ -15,7 +15,8 @@
       "adaptiveIcon": {
         "foregroundImage": "",
         "backgroundColor": "#161622"
-      }
+      },
+      "package": "com.kartik2611mishra.myapp"
     },
     "web": {
       "bundler": "metro",
@@ -36,6 +37,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "ce6836ea-8774-4f90-98a3-db239a1f4160"
+      }
     }
   }
 }

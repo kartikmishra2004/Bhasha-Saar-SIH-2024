@@ -81,10 +81,10 @@ const styles = StyleSheet.create({
     },
     info: {
         fontSize: 16,
-              letterSpacing: 1,
-              fontWeight: '100',
-              color: 'white',
-              marginTop: 5,
+        letterSpacing: 1,
+        fontWeight: '100',
+        color: 'white',
+        marginTop: 5,
     },
     description: {
         fontSize: 16,

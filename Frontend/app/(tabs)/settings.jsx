@@ -16,7 +16,7 @@ const Settings = () => {
     const getLogin = async () => {
         const token = await AsyncStorage.getItem('token');
         setIsLogin(token);
-      }
+    }
 
     useEffect(() => {
         getLogin();
