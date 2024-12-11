@@ -25,7 +25,8 @@ export const signupSchema = z.object({
         .min(4, { message: "Username must be atleast 4 characters long!!" })
         .max(30, { message: "Username cannot be more than 30 characters!!" }),
     phone: z
-        .number({ required_error: " is required!!" })
+        .string({ required_error: " is required!!" })
+        .trim()
         .min(3, { message: "Phone must be at lease 3 characters long!!" })
         .max(12, { message: "Phone cannot be more than 12 characters!!" }),
     password: z
