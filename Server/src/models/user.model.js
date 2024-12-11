@@ -10,9 +10,8 @@ const userSchema = new mongoose.Schema({
         type: String,
         lowercase: true,
     },
-    email: {
-        type: String,
-        lowercase: true,
+    phone: {
+        type: Number,
     },
     password: {
         type: String,
